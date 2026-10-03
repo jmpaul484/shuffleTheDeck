@@ -16,9 +16,14 @@ namespace shuffleTheDeck
         */
         static bool[,] cardTracker = new bool[13, 4];
         static int cardCount = 0;
+        // single Random instance to avoid reseeding issues
+        static Random rng = new Random();
 
         static void Main(string[] args)
         {
+            // ensure console can render Unicode suit characters
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.InputEncoding = System.Text.Encoding.UTF8;
             string userInput = "";
             do
             {
@@ -44,7 +49,8 @@ namespace shuffleTheDeck
         static void DisplayBoard()
         {
             string cardNumber;
-            string[] header = { "Spades", "Clubs", "Diamonds", "Hearts" };
+            // use Unicode escapes for suit symbols to avoid source encoding issues
+            string[] header = { "\u2660 ", "\u2663 ", "\u2665 ", "\u2666 " };
             string seperator = "_";
 
             foreach (string letter in header)
@@ -74,7 +80,7 @@ namespace shuffleTheDeck
                     {
                         cardNumber = "";
                     }
-                    Console.Write(cardNumber.PadLeft(2) + "|");
+                    Console.Write(cardNumber.PadLeft(5) + "|");
                 }
                 Console.WriteLine();
             }
@@ -83,15 +89,20 @@ namespace shuffleTheDeck
 
         static void DrawCard()
         {
-            Random Card = new Random();
+            if (cardCount >= 52)
+            {
+                Console.WriteLine("All 52 cards have been drawn. Clear the board to start a new game.");
+                return;
+            }
+
             int rowCard, colCard;
             Console.WriteLine("Press any key to draw a card or c to clear the board");
             do
             {
-                rowCard = Card.Next(13);
-                colCard = Card.Next(4);
+                rowCard = rng.Next(13);
+                colCard = rng.Next(4);
 
-            } while (cardTracker[rowCard, colCard] && cardCount < 52);
+            } while (cardTracker[rowCard, colCard]);
             cardCount++;
             Console.WriteLine($"Cards drawn: {cardCount}");
             cardTracker[rowCard, colCard] = true;
