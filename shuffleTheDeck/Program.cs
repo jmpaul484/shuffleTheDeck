@@ -1,4 +1,8 @@
-﻿namespace shuffleTheDeck
+﻿//Joanthan Paul
+//RCET 2265
+// Fall 2026
+//https://github.com/jmpaul484/shuffleTheDeck.git
+namespace shuffleTheDeck
 {
     internal class Program
     {
