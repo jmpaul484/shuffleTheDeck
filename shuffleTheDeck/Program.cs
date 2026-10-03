@@ -1,4 +1,4 @@
-﻿//Joanthan Paul
+﻿//Jonathan Paul
 //RCET 2265
 // Fall 2026
 //https://github.com/jmpaul484/shuffleTheDeck.git
@@ -7,12 +7,12 @@ namespace shuffleTheDeck
     internal class Program
     {
         /* TODO
-         [] Create a 2D array to track the cards drawn
-         [] Create a method to display the board
-         [] Create a method to draw a card
-         [] Create a method to clear the board
-         [] Create a method to check if the board is full
-         [] Create a method to check if the card has already been drawn
+         [X] Create a 2D array to track the cards drawn
+         [X] Create a method to display the board
+         [X] Create a method to draw a card
+         [X] Create a method to clear the board
+         [X] Create a method to check if the board is full
+         [X] Create a method to check if the card has already been drawn
         */
         static bool[,] cardTracker = new bool[13, 4];
         static int cardCount = 0;
@@ -45,14 +45,15 @@ namespace shuffleTheDeck
             //pause
             Console.ReadLine();
         }
-
+        // method to display the board
         static void DisplayBoard()
         {
+            // header
             string cardNumber;
             // use Unicode escapes for suit symbols to avoid source encoding issues
             string[] header = { "\u2660 ", "\u2663 ", "\u2665 ", "\u2666 " };
             string seperator = "_";
-
+            
             foreach (string letter in header)
             {
                 Console.Write(letter.PadLeft(3));
@@ -60,9 +61,6 @@ namespace shuffleTheDeck
             }
             Console.WriteLine();
             Console.WriteLine(seperator);
-
-            // header
-
             // iterate through array
             int rows = cardTracker.GetLength(0);
             int cols = cardTracker.GetLength(1);
@@ -99,7 +97,7 @@ namespace shuffleTheDeck
             }
             Console.WriteLine();
         }
-
+        // method to draw a card, make sure to check if the card has already been drawn and if the board is full
         static void DrawCard()
         {
             if (cardCount >= 52)
