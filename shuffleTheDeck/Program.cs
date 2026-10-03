@@ -1,4 +1,4 @@
-﻿namespace BingoGame
+﻿namespace shuffleTheDeck
 {
     internal class Program
     {
