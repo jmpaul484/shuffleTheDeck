@@ -14,7 +14,7 @@ namespace shuffleTheDeck
          [] Create a method to check if the board is full
          [] Create a method to check if the card has already been drawn
         */
-        static bool[,] cardTracker = new bool[15, 5];
+        static bool[,] cardTracker = new bool[13, 4];
         static int cardCount = 0;
 
         static void Main(string[] args)
@@ -26,7 +26,7 @@ namespace shuffleTheDeck
                 DisplayBoard();
                 Console.WriteLine("Press any key to continue or q to quit");
                 userInput = Console.ReadLine();
-                if (userInput == "c" || userInput == "C" || cardCount >= 75)
+                if (userInput == "c" || userInput == "C" || cardCount >= 52)
                 {
                     Array.Clear(cardTracker, 0, cardTracker.Length);
                     cardCount = 0;
@@ -44,7 +44,7 @@ namespace shuffleTheDeck
         static void DisplayBoard()
         {
             string cardNumber;
-            string[] header = { "B", "I", "N", "G", "O" };
+            string[] header = { "Spades", "Clubs", "Diamonds", "Hearts" };
             string seperator = "_";
 
             foreach (string letter in header)
@@ -68,7 +68,7 @@ namespace shuffleTheDeck
                 {
                     if (cardTracker[row, col])
                     {
-                        cardNumber = ((rows * col) + row + 1).ToString();
+                        cardNumber = (col).ToString() + (row).ToString();
                     }
                     else
                     {
@@ -88,10 +88,10 @@ namespace shuffleTheDeck
             Console.WriteLine("Press any key to draw a card or c to clear the board");
             do
             {
-                rowCard = Card.Next(15);
-                colCard = Card.Next(5);
+                rowCard = Card.Next(13);
+                colCard = Card.Next(4);
 
-            } while (cardTracker[rowCard, colCard] && cardCount < 75);
+            } while (cardTracker[rowCard, colCard] && cardCount < 52);
             cardCount++;
             Console.WriteLine($"Cards drawn: {cardCount}");
             cardTracker[rowCard, colCard] = true;
