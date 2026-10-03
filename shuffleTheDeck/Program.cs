@@ -80,7 +80,7 @@ namespace shuffleTheDeck
                     {
                         cardNumber = "";
                     }
-                    Console.Write(cardNumber.PadLeft(5) + "|");
+                    Console.Write(cardNumber.PadLeft(2) + "|");
                 }
                 Console.WriteLine();
             }
