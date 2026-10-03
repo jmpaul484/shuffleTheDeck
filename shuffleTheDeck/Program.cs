@@ -74,7 +74,20 @@ namespace shuffleTheDeck
                 {
                     if (cardTracker[row, col])
                     {
-                        cardNumber = (row+1).ToString();
+                        int rank = row + 1;
+                        string rankStr;
+                        if (rank == 1)
+                            rankStr = "A";
+                        else if (rank == 11)
+                            rankStr = "J";
+                        else if (rank == 12)
+                            rankStr = "Q";
+                        else if (rank == 13)
+                            rankStr = "K";
+                        else
+                            rankStr = rank.ToString();
+
+                        cardNumber = rankStr;
                     }
                     else
                     {
