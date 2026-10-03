@@ -74,7 +74,7 @@ namespace shuffleTheDeck
                 {
                     if (cardTracker[row, col])
                     {
-                        cardNumber = (col).ToString() + (row).ToString();
+                        cardNumber = (row+1).ToString();
                     }
                     else
                     {
