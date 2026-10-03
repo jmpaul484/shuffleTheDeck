@@ -2,7 +2,7 @@
 //RCET 2265
 // Fall 2026
 //https://github.com/jmpaul484/shuffleTheDeck.git
-namespace shuffleTheDeck
+namespace ShuffleTheDeck
 {
     internal class Program
     {
