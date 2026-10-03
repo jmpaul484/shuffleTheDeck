@@ -7,30 +7,29 @@ namespace shuffleTheDeck
     internal class Program
     {
         /* TODO
-          [x] display drawn balls
-          [x] draw a random ball
-          [x] if ball already drawn just draw another
-          [x] don't draw when all balls already drawn
-          [x] let user start a new game any time
-          [x] let user quit at any time
-          [ ] 
-         */
-        static bool[,] ballTracker = new bool[15, 5];
-        static int ballCount = 0;
+         [] Create a 2D array to track the cards drawn
+         [] Create a method to display the board
+         [] Create a method to draw a card
+         [] Create a method to clear the board
+         [] Create a method to check if the board is full
+         [] Create a method to check if the card has already been drawn
+        */
+        static bool[,] cardTracker = new bool[15, 5];
+        static int cardCount = 0;
 
         static void Main(string[] args)
         {
             string userInput = "";
             do
             {
-                DrawBall();
+                DrawCard();
                 DisplayBoard();
                 Console.WriteLine("Press any key to continue or q to quit");
                 userInput = Console.ReadLine();
-                if (userInput == "c" || userInput == "C" || ballCount >= 75)
+                if (userInput == "c" || userInput == "C" || cardCount >= 75)
                 {
-                    Array.Clear(ballTracker, 0, ballTracker.Length);
-                    ballCount = 0;
+                    Array.Clear(cardTracker, 0, cardTracker.Length);
+                    cardCount = 0;
                     Console.WriteLine("");
                     Console.WriteLine("You have cleared the board. A new game has started.");
                 }
@@ -44,7 +43,7 @@ namespace shuffleTheDeck
 
         static void DisplayBoard()
         {
-            string ballNumber;
+            string cardNumber;
             string[] header = { "B", "I", "N", "G", "O" };
             string seperator = "_";
 
@@ -59,43 +58,43 @@ namespace shuffleTheDeck
             // header
 
             // iterate through array
-            int rows = ballTracker.GetLength(0);
-            int cols = ballTracker.GetLength(1);
+            int rows = cardTracker.GetLength(0);
+            int cols = cardTracker.GetLength(1);
 
             for (int row = 0; row < rows; row++)
             {
                 Console.Write("|");
                 for (int col = 0; col < cols; col++)
                 {
-                    if (ballTracker[row, col])
+                    if (cardTracker[row, col])
                     {
-                        ballNumber = ((rows * col) + row + 1).ToString();
+                        cardNumber = ((rows * col) + row + 1).ToString();
                     }
                     else
                     {
-                        ballNumber = "";
+                        cardNumber = "";
                     }
-                    Console.Write(ballNumber.PadLeft(2) + "|");
+                    Console.Write(cardNumber.PadLeft(2) + "|");
                 }
                 Console.WriteLine();
             }
             Console.WriteLine();
         }
 
-        static void DrawBall()
+        static void DrawCard()
         {
-            Random Ball = new Random();
-            int rowBall, colBall;
-            Console.WriteLine("Press any key to draw a ball or c to clear the board");
+            Random Card = new Random();
+            int rowCard, colCard;
+            Console.WriteLine("Press any key to draw a card or c to clear the board");
             do
             {
-                rowBall = Ball.Next(15);
-                colBall = Ball.Next(5);
+                rowCard = Card.Next(15);
+                colCard = Card.Next(5);
 
-            } while (ballTracker[rowBall, colBall] && ballCount < 75);
-            ballCount++;
-            Console.WriteLine($"Balls drawn: {ballCount}");
-            ballTracker[rowBall, colBall] = true;
+            } while (cardTracker[rowCard, colCard] && cardCount < 75);
+            cardCount++;
+            Console.WriteLine($"Cards drawn: {cardCount}");
+            cardTracker[rowCard, colCard] = true;
         }
     }
 }
